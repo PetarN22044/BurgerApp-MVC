@@ -1,0 +1,40 @@
+﻿@using BurgerApp.Models
+@model BurgerApp.Models.OrderViewModel
+
+<h1>Create New Order</h1>
+
+<form asp-controller="Order" asp-action="Create" method="post">
+    <div class="form-group">
+       <label for="FullName">Full Name:</label>
+      <input id="FullName" name="FullName" type="text" class="form-control" asp-for="FullName" required />
+    </div>
+
+    <div class="form-group">
+        <label for="Address">Address:</label>
+         <input id="Address" name="Address" type="text" class="form-control" asp-for="Address" required />
+    </div>
+
+    <div class="form-group">
+        <label for="IsDelivered">Is Delivered:</label>
+          <input id="IsDelivered" name="IsDelivered" type="checkbox" class="form-check-input" asp-for="IsDelivered" />
+    </div>
+
+    <div class="form-group">
+      <label for="BurgerId">Burger:</label>
+      <select id="BurgerId" name="BurgerId" class="form-control" asp-for="Burger" required>
+          <option value="">Select a Burger</option>
+           @foreach (var burger in ViewBag.Burgers)@*ovde imam samo ViewBag koj mi e i vo akcijava vo Burger KOntrolerov ama zoso taka imame nekoja zavisnost od niv*@
+            {
+                <option value="@burger.Id">@burger.Name</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+      <label for="Location">Location:</label>
+      <input id="Location" name="Location" type="text" class="form-control" asp-for="Location" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-controller="Order" asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

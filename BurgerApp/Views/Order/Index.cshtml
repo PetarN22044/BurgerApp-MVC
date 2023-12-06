@@ -1,0 +1,37 @@
+﻿@model List<BurgerApp.Services.Models.OrderViewModel>
+
+<h1>Order List</h1>
+@*Ova mi e skroz od Burgerov kopi samo Bool Logikava mi e razlicna poso e sepak Order ? "Yes":"No" ovoj del na if else go koristam samo i tolku*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Full Name</th>
+            <th>Address</th>
+            <th>Is Delivered</th>
+            <th>Burger</th>
+            <th>Location</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.Id</td>
+                <td>@order.FullName</td>
+                <td>@order.Address</td>
+                <td>@(order.IsDelivered ? "Yes" : "No")</td>
+                <td>@order.Burger.Name</td>
+                <td>@order.Location</td>
+                <td>
+                    <a asp-controller="Order" asp-action="Edit" asp-route-id="@order.Id">Edit</a> |
+                    <a asp-controller="Order" asp-action="Delete" asp-route-id="@order.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Order" asp-action="Create" class="btn btn-primary">Create New Order</a>
+

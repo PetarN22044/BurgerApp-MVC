@@ -1,0 +1,37 @@
+﻿@model IEnumerable<BurgerApp.Services.Models.BurgerViewModel>
+
+<h2>Burgers</h2>
+
+<p>
+    <a asp-action="Create">Add New Burger</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Is Vegetarian</th>
+            <th>Is Vegan</th>
+            <th>Has Fries</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var burger in Model)
+        {
+            <tr>
+                <td>@burger.Name</td>
+                <td>@burger.Price</td>
+                <td>@(burger.IsVegetarian ? "Yes" : "No")</td>
+                <td>@(burger.IsVegan ? "Yes" : "No")</td>
+                <td>@(burger.HasFries ? "Yes" : "No")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@burger.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@burger.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

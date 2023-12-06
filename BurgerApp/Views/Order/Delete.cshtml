@@ -1,0 +1,16 @@
+﻿@model BurgerApp.Models.OrderViewModel
+
+@using BurgerApp.Models
+<h1>Delete Order</h1>
+
+<div class="alert alert-warning">
+    Are you sure you want to delete the order with ID <strong>@Model.Id</strong>?
+</div>
+
+<form asp-controller="Order" asp-action="DeleteConfirmed" method="post">
+    <input type="hidden" asp-for="Id" />
+
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-controller="Order" asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
